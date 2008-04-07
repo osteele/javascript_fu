@@ -1,0 +1,17 @@
+JavaScript Fu Rails Plugin
+==========================
+
+
+Extended JavaScript Tasks
+-------------------------
+  rake statistics
+includes files in public/javascripts
+
+  rake notes
+includes files in public/javascripts
+
+
+License
+=======
+Copyright 2008 by Oliver Steele.  All rights reserved.
+Available under the MIT License.

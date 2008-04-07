@@ -1,0 +1,34 @@
+RJS View Helper
+---------------
+Use RJS inside a view:
+  javascript_tag do |page|
+    page.insert_html :bottom, 'list', "<li>#{@item.name}</li>"
+    page << "alert('JavaScript with Prototype.');"
+    page.call 'alert', 'My message!'
+  end
+
+New +onload+ method registers the generated block to run on page
+load.  This uses Prototype's Event.observe(window, 'load'), or
+$() if jrails is loaded.
+  javascript_tag do |page|
+    page.onload do
+      page.call 'alert', 'loaded'
+    end
+  end  
+
+'Calls JavaScript' RSpec Matcher
+--------------------------------
+  # requires "new MyClass.fn" inside a
+  # <script>...</script> or +javascript_tag+:
+  calls_js('new MyClass')
+  
+  # requires "new MyClass.fn(...)"
+  calls_js('MyClass.fn')
+  
+  # requires "MyClass.fn(1, {key: 'substring'}) inside
+  # a <script>...</script> or +javascript_tag+:
+  calls_js('MyClass.fn') do |args|
+    args.first.should == 1
+    args.second.should be_instance_of(Hash)
+    args.second['key'].should =~ /substr/
+  end
