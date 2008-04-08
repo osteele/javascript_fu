@@ -11,6 +11,14 @@ includes files in public/javascripts
 includes files in public/javascripts
 
 
+'Calls JavaScript' RSpec Matcher
+--------------------------------
+Use these in your specs:
+  response.should call_js('fn')
+  response.should call_js('fn(true)')
+  response.should call_js('gApp.setup')
+
+
 License
 =======
 Copyright 2008 by Oliver Steele.  All rights reserved.

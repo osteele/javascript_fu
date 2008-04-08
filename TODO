@@ -1,3 +1,12 @@
+Other
+-----
+- intro in readme
+- view helper
+- call_js body
+- rdoc
+- use matcher class, for better error messages
+
+
 RJS View Helper
 ---------------
 Use RJS inside a view:
@@ -16,18 +25,16 @@ $() if jrails is loaded.
     end
   end  
 
+
 'Calls JavaScript' RSpec Matcher
 --------------------------------
   # requires "new MyClass.fn" inside a
   # <script>...</script> or +javascript_tag+:
-  calls_js('new MyClass')
-  
-  # requires "new MyClass.fn(...)"
-  calls_js('MyClass.fn')
+  call_js('new MyClass')
   
   # requires "MyClass.fn(1, {key: 'substring'}) inside
   # a <script>...</script> or +javascript_tag+:
-  calls_js('MyClass.fn') do |args|
+  call_js('MyClass.fn') do |args|
     args.first.should == 1
     args.second.should be_instance_of(Hash)
     args.second['key'].should =~ /substr/
