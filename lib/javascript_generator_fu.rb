@@ -1,8 +1,13 @@
-module ActionView
-  module Helpers
-    module PrototypeHelper
+module ActionView #:nodoc:
+  module Helpers #:nodoc:
+    module PrototypeHelper #:nodoc:
       class JavaScriptGenerator #:nodoc:
         module GeneratorMethods
+          # Executes the content of the block upon the completion of
+          # page load.  This uses Prototype's
+          # <code>Event.observe(window, 'load')</code>, or
+          # <code>$(document).ready()</code> if jrails is loaded.
+          #
           # Example:
           #
           #   # Generates:

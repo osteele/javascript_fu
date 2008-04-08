@@ -1,14 +1,11 @@
-To Do
------
+== To Do
 - view helper
 - call_js body
-- rdoc
 - use matcher class, for better error messages
 - ignore framework files in public/javascript
 - spec for js call with argument
 
-RJS View Helper
----------------
+== RJS View Helper
 Use RJS inside a view:
   javascript_tag do |page|
     page.insert_html :bottom, 'list', "<li>#{@item.name}</li>"
@@ -17,12 +14,7 @@ Use RJS inside a view:
   end
 
 
-'Calls JavaScript' RSpec Matcher
---------------------------------
-  # requires "new MyClass.fn" inside a
-  # <script>...</script> or +javascript_tag+:
-  call_js('new MyClass')
-  
+== 'Calls JavaScript' RSpec Matcher
   # requires "MyClass.fn(1, {key: 'substring'}) inside
   # a <script>...</script> or +javascript_tag+:
   call_js('MyClass.fn') do |args|

@@ -1,7 +1,7 @@
 require 'source_annotation_extractor'
 
 # Monkey-patch to look in public/javascripts and in js source files
-class SourceAnnotationExtractor
+class SourceAnnotationExtractor #:nodoc:
   def find_in_with_js(dir)
     results = find_in_without_js(dir)
 
