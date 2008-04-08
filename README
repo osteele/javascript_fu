@@ -1,19 +1,34 @@
 JavaScript Fu Rails Plugin
 ==========================
+This plugin adds helpers, rake tasks, and rspec matchers for JavaScript
+development.
+
+Generator Helpers
+-----------------
+The new +onload+ generator method wraps code that is not called until
+page load is complete.  This uses Prototype's Event.observe(window, 'load'),
+or $(document).ready() if jrails is loaded.
+  page.onload do
+    page.call alert', 'page loaded!'
+  end
+generates
+  Event.observe("window", "load", function() { alert("page loaded!"); });
+or
+  $(document).ready(function() { alert("page loaded!"); });
 
 
 Extended JavaScript Tasks
 -------------------------
+The existing +notes+ and +statistics+ tasks are extended to compass
+the public/javascript directory:
   rake statistics
-includes files in public/javascripts
-
   rake notes
-includes files in public/javascripts
 
 
 'Calls JavaScript' RSpec Matcher
 --------------------------------
-Use these in your specs:
+Use these in your specs to verify that a view is calling a JavaScript
+function:
   response.should call_js('fn')
   response.should call_js('fn(true)')
   response.should call_js('gApp.setup')

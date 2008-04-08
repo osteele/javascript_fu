@@ -1,11 +1,11 @@
-Other
+To Do
 -----
-- intro in readme
 - view helper
 - call_js body
 - rdoc
 - use matcher class, for better error messages
-
+- ignore framework files in public/javascript
+- spec for js call with argument
 
 RJS View Helper
 ---------------
@@ -15,15 +15,6 @@ Use RJS inside a view:
     page << "alert('JavaScript with Prototype.');"
     page.call 'alert', 'My message!'
   end
-
-New +onload+ method registers the generated block to run on page
-load.  This uses Prototype's Event.observe(window, 'load'), or
-$() if jrails is loaded.
-  javascript_tag do |page|
-    page.onload do
-      page.call 'alert', 'loaded'
-    end
-  end  
 
 
 'Calls JavaScript' RSpec Matcher
