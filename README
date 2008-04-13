@@ -5,7 +5,7 @@ development.
 
 == Installation
 
-git clone git://github.com/osteele/javascript_fu.git vendor/plugins
+  git clone git://github.com/osteele/javascript_fu.git vendor/plugins/javascript_fu --depth 1
 
 
 == Extended Rake Tasks
