@@ -1,9 +1,22 @@
-== JavaScript Fu Rails Plugin
+= JavaScript Fu Rails Plugin
 
 This plugin adds helpers, rake tasks, and rspec matchers for JavaScript
-development:
+development.
 
-=== Generator Helpers
+== Installation
+
+git clone git://github.com/osteele/javascript_fu.git vendor/plugins
+
+
+== Extended Rake Tasks
+
+The existing +notes+ and +statistics+ tasks are extended to compass
+the public/javascript directory:
+  rake statistics
+  rake notes
+
+
+== New View Helper
 
 The new +onload+ generator method generates code that executes the content
 of the block upon the completion of page load.
@@ -16,15 +29,7 @@ or
   $(document).ready(function() { alert("page loaded!"); });
 
 
-=== Extended JavaScript Tasks
-
-The existing +notes+ and +statistics+ tasks are extended to compass
-the public/javascript directory:
-  rake statistics
-  rake notes
-
-
-=== 'Calls JavaScript' RSpec Matcher
+== New RSpec Matcher
 
 Use these in your specs to verify that a view is calling a JavaScript
 function:
@@ -33,6 +38,6 @@ function:
   response.should call_js('gApp.setup')
 
 
-== License
+= License
 Copyright 2008 by Oliver Steele.  All rights reserved.
 Released under the MIT License.
