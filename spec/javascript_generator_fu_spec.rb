@@ -16,7 +16,7 @@ describe :JavaScriptGenerator, :onload do
         page.call 'alert', 'loaded!'
       end
     end
-    text.should =~ /(\bEvent.observe\("window", "load", |\$\(document\)\.ready\()function\(\) \{\s*;?\s*alert\("loaded!"\);\s*\}\);/m
+    text.should =~ /(\bEvent.observe\("window", "load", |\$\(document\)\.ready\()function\(\) \{\s*alert\("loaded!"\);\s*\}\);/m
   end
   
   it "should preserve the order of statements" do

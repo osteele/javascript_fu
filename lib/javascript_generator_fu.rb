@@ -18,17 +18,17 @@ module ActionView #:nodoc:
           #     page.call 'fn'
           #    end
           def onload
-            if use_jquery?
-              record "$(document).ready(function() {\n\n"
+            if jquery?
+              self << "$(document).ready(function() {\n"
             else
-              record "Event.observe(\"window\", \"load\", function() {\n\n"
+              self << "Event.observe(\"window\", \"load\", function() {\n"
             end
             yield
-            record "});"
+            self << "\n});"
           end
           
           private
-          def use_jquery?
+          def jquery?
             js = JavaScriptGenerator.new(nil) do |page|
               page.insert_html('top', 'id')
             end.to_s
