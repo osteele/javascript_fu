@@ -12,10 +12,10 @@ module JavascriptFu
                      pattern = /\b#{pattern}/
                    when pattern =~ /^new\b/
                      # 'new': the arglist is optional
-                     pattern = /\b#{pattern}\b\s*(\(.*)?/
+                     pattern = /\b#{pattern}\b\s*\((.*)?/
                    else
                      # else the arglist is required
-                     pattern = /\b#{pattern}\s*(\(.*)/
+                     pattern = /\b#{pattern}\s*\((.*)/
                    end
       end
       
@@ -30,7 +30,13 @@ module JavascriptFu
           actual = HTML::Document.new(response_or_text).root
         end
         begin
-          @spec_scope.assert_select(actual, 'script', @pattern, &block)
+          @spec_scope.assert_select(actual, 'script', @pattern) do |tags|
+            if block
+              raise "no arguments detected" unless tags[0].to_s =~ @pattern
+              args = JavascriptFu.read_json_arglist($1)
+              block.call(args)
+            end
+          end
         rescue ::Test::Unit::AssertionFailedError => @error
         end
         
@@ -61,13 +67,36 @@ module JavascriptFu
     #   response.should call_js('new C')
     #   response.should call_js('new C(1)')
     #
+    # If block is supplied, the arguments to the function are decoded
+    # as JSON and passed to the block:
+    #   # response includes <script>...fn('string', 2)...</script>
+    #   response.should call_js(fn') do |args|
+    #     args.should == ['string', 2]
+    #   end
     def call_js(pattern, &block)
       return CallJS.new(pattern, self, &block)
-      # only look in script tags
-      have_tag('script', pattern)
-      if block
-        p self
+    end
+  end
+  
+  # Parse until the first unmatched ")]}" or end of string
+  def self.read_json_arglist(string)
+    require 'activesupport'
+    scanner, level = StringScanner.new(string), 0
+    while scanner.scan_until(/(['"\/(){}\[\]])/)
+      token = scanner[1]
+      break if token =~ /[)}\]]/ and level == 0
+      case token
+      when /[({\[]/
+        level += 1
+      when /[)}\]]/
+        level -= 1
+      when /'/
+      when /"/
+      else
+        raise "unimplemented"
       end
     end
+    string = string[0...scanner.pos-1] if scanner.pos > 0
+    ActiveSupport::JSON.decode('[' + string + ']')
   end
 end

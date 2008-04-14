@@ -59,10 +59,30 @@ describe :call_js do
   
   describe "argument list parsing" do
     it "should match the arguments of a function call" do
-      pending
       string = '<script>fname("string", 2)</script>'
       string.should call_js('fname') do |args|
-        p args[0].to_s
+        args.should == ['string', 2]
+      end
+    end
+    
+    it "should match the arguments of a method call" do
+      string = '<script>obj.fname("string", 2)</script>'
+      string.should call_js('obj.fname') do |args|
+        args.should == ['string', 2]
+      end
+    end
+    
+    it "should ignore following material" do
+      string = '<script>fname("string", 2);g()</script>'
+      string.should call_js('fname') do |args|
+        args.should == ['string', 2]
+      end
+    end
+    
+    it "should include nested objects" do
+      string = '<script>fname("string", [1,2], {a:3})</script>'
+      string.should call_js('fname') do |args|
+        args.should == ['string', [1,2], {'a' => 3}]
       end
     end
   end

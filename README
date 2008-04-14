@@ -37,6 +37,13 @@ function:
   response.should call_js('fn(true)')
   response.should call_js('gApp.setup')
 
+If there is a body, the arguments to the call are parsed (as JSON) and
+passed to it:
+  # response includes <script>...fn('string', 2)...</script>
+  response.should call_js(fn') do |args|
+    args.should == ['string', 2]
+  end
+
 
 = License
 Copyright 2008 by Oliver Steele.  All rights reserved.

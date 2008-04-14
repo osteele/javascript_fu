@@ -2,7 +2,6 @@
 
 Next:
 - view helper
-- call_js body
 - ignore framework files in public/javascript
 
 
@@ -12,14 +11,4 @@ Use RJS inside a view:
     page.insert_html :bottom, 'list', "<li>#{@item.name}</li>"
     page << "alert('JavaScript with Prototype.');"
     page.call 'alert', 'My message!'
-  end
-
-
-== 'Calls JavaScript' RSpec Matcher
-  # requires "MyClass.fn(1, {key: 'substring'}) inside
-  # a <script>...</script> or +javascript_tag+:
-  call_js('MyClass.fn') do |args|
-    args.first.should == 1
-    args.second.should be_instance_of(Hash)
-    args.second['key'].should =~ /substr/
   end
