@@ -1,10 +1,9 @@
-== To Do
+= JavaScript Fu To Do
 
+Next:
 - view helper
 - call_js body
-- use matcher class, for better error messages
 - ignore framework files in public/javascript
-- spec for js call with argument
 
 
 == RJS View Helper

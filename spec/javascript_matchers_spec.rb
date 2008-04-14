@@ -2,11 +2,13 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 require File.expand_path(File.dirname(__FILE__) + "/../lib/js_matchers")
 
 describe :call_js do
-  include JavascriptMatchers
+  include JavascriptFu::Matchers
   
   it 'should match script content using a regexp' do
     string = '<script>foo</script>'
     string.should call_js(/fo*/)
+    lambda { string.should call_js(/bar/) }.should raise_error("should call js(/bar/), but did not")
+    lambda { string.should_not call_js(/foo/) }.should raise_error("should not call js(/foo/), but did")
   end
 
   describe "with a function name" do
@@ -52,6 +54,16 @@ describe :call_js do
     it 'should not match part of a name' do
       string = '<script>var obj = new klass()</script>'
       string.should_not call_js('new klas')
+    end
+  end
+  
+  describe "argument list parsing" do
+    it "should match the arguments of a function call" do
+      pending
+      string = '<script>fname("string", 2)</script>'
+      string.should call_js('fname') do |args|
+        p args[0].to_s
+      end
     end
   end
 end
