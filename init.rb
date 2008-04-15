@@ -1,1 +1,1 @@
-require 'javascript_generator_fu'
+require 'js_fu_generator'

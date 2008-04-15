@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '/../lib/js_matchers')
+require File.join(File.dirname(__FILE__), '/../lib/js_fu_matchers')
 
 describe JavascriptFu do
   describe :read_json_arglist do
@@ -21,7 +21,9 @@ describe JavascriptFu do
     it "should enclose multiple nesting levels" do
       JavascriptFu.read_json_arglist('1,[{a:[2],b:{c:3}},[4]],5)]]').should == [1, [{'a' => [2], 'b' => {'c' => 3}}, [4]], 5]
     end
+    
+    it "should scan strings"
+    it "should scan strings with quoted quotes"
+    it "should scan simple regular expressions"
   end
 end
-
-  

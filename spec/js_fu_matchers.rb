@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require File.expand_path(File.dirname(__FILE__) + "/../lib/js_matchers")
+require File.expand_path(File.dirname(__FILE__) + "/../lib/js_fu_matchers")
 
 describe :call_js do
   include JavascriptFu::Matchers

@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require File.expand_path(File.dirname(__FILE__) + "/../lib/javascript_generator_fu")
+require File.expand_path(File.dirname(__FILE__) + "/../lib/js_fu_generator")
 
 describe :JavaScriptGenerator, :onload do
   include ::ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods

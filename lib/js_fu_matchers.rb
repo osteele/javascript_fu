@@ -73,6 +73,9 @@ module JavascriptFu
     #   response.should call_js(fn') do |args|
     #     args.should == ['string', 2]
     #   end
+    #
+    # Since in this case the whole argument list is parsed as one JSON list,
+    # it can't include any comments or non-literal expressions.
     def call_js(pattern, &block)
       return CallJS.new(pattern, self, &block)
     end
