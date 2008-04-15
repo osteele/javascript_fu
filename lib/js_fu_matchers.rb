@@ -94,12 +94,18 @@ module JavascriptFu
       when /[)}\]]/
         level -= 1
       when /'/
+        scanner.scan(/.*?'/)
       when /"/
+        scanner.scan(/.*?"/)
       else
         raise "unimplemented"
       end
     end
     string = string[0...scanner.pos-1] if scanner.pos > 0
-    ActiveSupport::JSON.decode('[' + string + ']')
+    begin
+      ActiveSupport::JSON.decode('[' + string + ']')
+    rescue ActiveSupport::JSON::ParseError => error
+      raise ActiveSupport::JSON::ParseError.new("#{string.inspect}")
+    end
   end
 end

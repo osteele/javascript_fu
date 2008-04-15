@@ -79,7 +79,7 @@ describe :call_js do
       end
     end
     
-    it "should include nested objects" do
+    it "should parse nested objects" do
       string = '<script>fname("string", [1,2], {a:3})</script>'
       string.should call_js('fname') do |args|
         args.should == ['string', [1,2], {'a' => 3}]

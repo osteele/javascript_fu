@@ -22,8 +22,17 @@ describe JavascriptFu do
       JavascriptFu.read_json_arglist('1,[{a:[2],b:{c:3}},[4]],5)]]').should == [1, [{'a' => [2], 'b' => {'c' => 3}}, [4]], 5]
     end
     
-    it "should scan strings"
-    it "should scan strings with quoted quotes"
+    it "should scan strings" do
+      JavascriptFu.read_json_arglist("'str')").should == ['str']
+      JavascriptFu.read_json_arglist('"str")').should == ['str']
+      JavascriptFu.read_json_arglist("'str','ing')").should == ['str', 'ing']
+    end
+    
+    it "should scan strings with quoted quotes" do
+      pending
+      JavascriptFu.read_json_arglist('"str\\\"ing")').should == ['str"ing']
+    end
+    
     it "should scan simple regular expressions"
   end
 end
