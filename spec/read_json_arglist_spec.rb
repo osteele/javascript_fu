@@ -29,8 +29,7 @@ describe JavascriptFu do
     end
     
     it "should scan strings with quoted quotes" do
-      pending
-      JavascriptFu.read_json_arglist('"str\\\"ing")').should == ['str"ing']
+      JavascriptFu.read_json_arglist('"str\\"ing")').should == ['str"ing']
     end
     
     it "should scan simple regular expressions"
