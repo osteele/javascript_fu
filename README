@@ -44,6 +44,17 @@ passed to it:
     args.should == ['string', 2]
   end
 
+If the "JCON"[http://jcon.rubyforge.org/] gem is installed, you can
+use this to test arguments values against ECMAScript 4.0 types:
+
+  '<script>fn("id", {x:1, y:2}, true)</script>'.should call_js('fn') do |args|
+    args[0].should conform_to_js('string')
+    args[1].should conform_to_js('{x:int, y:int}')
+    args[2].should conform_to_js('boolean')
+    # or:
+    args.should conform_to_js('[string, {x:int, y:int}, boolean]')
+  end
+
 
 = License
 Copyright 2008 by Oliver Steele.  All rights reserved.
