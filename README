@@ -5,7 +5,7 @@ development.
 
 == Installation
 
-  git clone git://github.com/osteele/javascript_fu.git vendor/plugins/javascript_fu --depth 1
+  git clone git://github.com/osteele/javascript_fu.git vendor/plugins/javascript_fu
 
 
 == Extended Rake Tasks
@@ -57,5 +57,5 @@ use this to test arguments values against ECMAScript 4.0 types:
 
 
 = License
-Copyright 2008 by Oliver Steele.  All rights reserved.
-Released under the MIT License.
+
+Copyright 2008 by {Oliver Steele}[http://workingwithrails.com/person/12359-oliver-steele].  All rights reserved.  Released under the MIT License.
