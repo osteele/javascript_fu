@@ -9,8 +9,8 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc' 
   rdoc.title    = 'JavaScript Fu'
   rdoc.options << '--line-numbers' << '--inline-source' <<
-    '--main' << 'README'
-  rdoc.rdoc_files.include ['lib', 'README', 'TODO', 'MIT-LICENSE']
+    '--main' << 'README.rdoc'
+  rdoc.rdoc_files.include ['lib', 'README.rdoc', 'TODO', 'MIT-LICENSE']
 end
 
 desc "Run all specs"
